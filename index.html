@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Tanvi! 💜</title>
+    <style>
+        :root {
+            --bts-purple: #6d4a9e;
+            --army-pink: #ff8fa3;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            color: white;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #container {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .btn-start {
+            background-color: white;
+            color: var(--bts-purple);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn-start:hover { transform: scale(1.1); background-color: var(--army-pink); color: white; }
+
+        #celebration { display: none; }
+
+        .member-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 10px;
+            border: 3px solid white;
+            box-shadow: 0 0 15px var(--bts-purple);
+            animation: pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            object-fit: cover;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .sweetie-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            color: var(--bts-purple);
+            padding: 20px 40px;
+            border-radius: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div id="intro">
+            <h1>A Special Surprise for Tanvi 🎂</h1>
+            <p>Ready for your 22nd Birthday Gift?</p>
+            <button class="btn-start" onclick="letsGo()">Open Your Gift! 💜</button>
+        </div>
+
+        <div id="celebration">
+            <h1 id="title-text">Happy Birthday Tanvi!</h1>
+            <div id="member-container"></div>
+        </div>
+    </div>
+
+    <div id="final-popup" class="sweetie-popup">Happy Birthday Sweetie! 🍭</div>
+
+    <audio id="bts-audio" src="YOUR_BOY_WITH_LUV_MP3_LINK_HERE"></audio>
+
+    <script>
+        const members = ["RM", "Jin", "Suga", "J-Hope", "Jimin", "V", "Jungkook"];
+
+        function letsGo() {
+            // Hide Intro, Show Celebration
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('celebration').style.display = 'block';
+
+            // Start "Boy With Luv" immediately
+            const audio = document.getElementById('bts-audio');
+            audio.play();
+
+            // Pop up BTS members one by one
+            const container = document.getElementById('member-container');
+            members.forEach((name, i) => {
+                setTimeout(() => {
+                    const img = document.createElement('img');
+                    // Replace these with actual image URLs of the members
+                    img.src = `https://via.placeholder.com/150/6d4a9e/ffffff?text=${name}`; 
+                    img.className = 'member-photo';
+                    container.appendChild(img);
+                }, i * 500); // Members appear every 0.5 seconds
+            });
+
+            // Final "Sweetie" Popup after all members appear
+            setTimeout(() => {
+                document.getElementById('final-popup').style.display = 'block';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
