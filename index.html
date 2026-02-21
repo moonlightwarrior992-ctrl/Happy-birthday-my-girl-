@@ -3,142 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Tanvi! 💜</title>
+    <title>Happy Birthday Tanvi 😈</title>
     <style>
         :root {
-            --bts-purple: #6d4a9e;
-            --army-pink: #ff8fa3;
+            --dark-bg: #0a0a0a;
+            --neon-purple: #bc13fe;
+            --deep-red: #ff0055;
         }
 
         body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
             margin: 0;
-            padding: 0;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            font-family: 'Arial', sans-serif;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             overflow: hidden;
-            color: white;
+            flex-direction: column;
         }
 
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        #container {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
-            max-width: 600px;
-            width: 90%;
-            text-align: center;
-        }
-
-        .btn-start {
-            background-color: white;
-            color: var(--bts-purple);
-            padding: 15px 40px;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.2rem;
+        /* Mysterious Glowing Button */
+        #portal {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #bc13fe, #1a1a1a);
+            border-radius: 50%;
+            box-shadow: 0 0 50px var(--neon-purple);
             cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: pulse 2s infinite;
+            transition: 0.5s;
         }
 
-        .btn-start:hover { transform: scale(1.1); background-color: var(--army-pink); color: white; }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 20px var(--neon-purple); }
+            50% { transform: scale(1.1); box-shadow: 0 0 60px var(--neon-purple); }
+            100% { transform: scale(1); box-shadow: 0 0 20px var(--neon-purple); }
+        }
 
-        #celebration { display: none; }
+        #main-stage {
+            display: none;
+            text-align: center;
+            width: 100%;
+        }
 
-        .member-photo {
+        .neon-text {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple), 0 0 40px var(--neon-purple);
+            margin-bottom: 20px;
+        }
+
+        /* BTS Member Photos */
+        .bts-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .member-card {
             width: 120px;
             height: 120px;
-            border-radius: 50%;
-            margin: 10px;
-            border: 3px solid white;
-            box-shadow: 0 0 15px var(--bts-purple);
-            animation: pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            border-radius: 10px;
+            border: 2px solid var(--neon-purple);
+            box-shadow: 0 0 15px var(--neon-purple);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 0.8s ease-out;
             object-fit: cover;
         }
 
-        @keyframes pop {
-            0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+        .show-member {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .sweetie-popup {
+        /* Sweetie Popup Overlay */
+        #final-overlay {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            color: var(--bts-purple);
-            padding: 20px 40px;
-            border-radius: 20px;
-            font-size: 2rem;
-            font-weight: bold;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
             display: none;
-            z-index: 100;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .sweetie-text {
+            font-size: 4rem;
+            color: var(--deep-red);
+            text-shadow: 0 0 20px var(--deep-red);
+            font-family: 'Dancing Script', cursive;
         }
     </style>
 </head>
 <body>
 
-    <div id="container">
-        <div id="intro">
-            <h1>A Special Surprise for Tanvi 🎂</h1>
-            <p>Ready for your 22nd Birthday Gift?</p>
-            <button class="btn-start" onclick="letsGo()">Open Your Gift! 💜</button>
-        </div>
-
-        <div id="celebration">
-            <h1 id="title-text">Happy Birthday Tanvi!</h1>
-            <div id="member-container"></div>
+    <div id="intro">
+        <h2 style="margin-bottom: 40px;">2003.03.22 — A Dark Star Was Born</h2>
+        <div id="portal" onclick="unlockSurprise()">
+            <span>TAP TO ENTER</span>
         </div>
     </div>
 
-    <div id="final-popup" class="sweetie-popup">Happy Birthday Sweetie! 🍭</div>
+    <div id="main-stage">
+        <h1 class="neon-text">HAPPY BIRTHDAY TANVI 😈</h1>
+        <div class="bts-container" id="bts-grid">
+            </div>
+    </div>
 
-    <audio id="bts-audio" src="YOUR_BOY_WITH_LUV_MP3_LINK_HERE"></audio>
+    <div id="final-overlay">
+        <div class="sweetie-text">Happy Birthday Sweetie! 🍭🔥</div>
+    </div>
+
+    <audio id="hbd-audio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio> 
+    <audio id="bts-audio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"></audio>
 
     <script>
         const members = ["RM", "Jin", "Suga", "J-Hope", "Jimin", "V", "Jungkook"];
+        
+        // Note: Replace these with real BTS image URLs
+        const btsImgs = [
+            "https://via.placeholder.com/150/000/bc13fe?text=RM",
+            "https://via.placeholder.com/150/000/bc13fe?text=Jin",
+            "https://via.placeholder.com/150/000/bc13fe?text=Suga",
+            "https://via.placeholder.com/150/000/bc13fe?text=J-Hope",
+            "https://via.placeholder.com/150/000/bc13fe?text=Jimin",
+            "https://via.placeholder.com/150/000/bc13fe?text=V",
+            "https://via.placeholder.com/150/000/bc13fe?text=JK"
+        ];
 
-        function letsGo() {
-            // Hide Intro, Show Celebration
+        function unlockSurprise() {
             document.getElementById('intro').style.display = 'none';
-            document.getElementById('celebration').style.display = 'block';
+            document.getElementById('main-stage').style.display = 'block';
 
-            // Start "Boy With Luv" immediately
-            const audio = document.getElementById('bts-audio');
-            audio.play();
+            const hbd = document.getElementById('hbd-audio');
+            const bts = document.getElementById('bts-audio');
 
-            // Pop up BTS members one by one
-            const container = document.getElementById('member-container');
-            members.forEach((name, i) => {
+            // 1. Start with HBD song for 4 seconds
+            hbd.play();
+
+            // 2. Switch to Boy With Luv and show members
+            setTimeout(() => {
+                hbd.pause();
+                bts.play();
+                spawnMembers();
+            }, 4000);
+
+            // 3. Final Sweetie Popup
+            setTimeout(() => {
+                document.getElementById('final-overlay').style.display = 'flex';
+            }, 12000);
+        }
+
+        function spawnMembers() {
+            const grid = document.getElementById('bts-grid');
+            btsImgs.forEach((url, index) => {
                 setTimeout(() => {
                     const img = document.createElement('img');
-                    // Replace these with actual image URLs of the members
-                    img.src = `https://via.placeholder.com/150/6d4a9e/ffffff?text=${name}`; 
-                    img.className = 'member-photo';
-                    container.appendChild(img);
-                }, i * 500); // Members appear every 0.5 seconds
+                    img.src = url;
+                    img.className = 'member-card';
+                    grid.appendChild(img);
+                    setTimeout(() => img.classList.add('show-member'), 50);
+                }, index * 600);
             });
-
-            // Final "Sweetie" Popup after all members appear
-            setTimeout(() => {
-                document.getElementById('final-popup').style.display = 'block';
-            }, 5000);
         }
     </script>
 </body>
