@@ -3,177 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Tanvi 😈</title>
+    <title>For Tanvi | 03.22</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --dark-bg: #0a0a0a;
-            --neon-purple: #bc13fe;
-            --deep-red: #ff0055;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            background-color: var(--dark-bg);
+            background: #050505;
+            overflow: hidden;
+            font-family: 'Cinzel', serif;
             color: white;
-            font-family: 'Courier New', Courier, monospace;
-            margin: 0;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            flex-direction: column;
         }
 
-        /* Mysterious Glowing Button */
-        #portal {
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, #bc13fe, #1a1a1a);
-            border-radius: 50%;
-            box-shadow: 0 0 50px var(--neon-purple);
-            cursor: pointer;
+        /* Animated Particle Background */
+        #canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            background: radial-gradient(circle at center, #1a0b2e 0%, #050505 100%);
+        }
+
+        /* Initial Dark Mystery Screen */
+        #overlay {
+            position: fixed;
+            z-index: 100;
+            width: 100%; height: 100%;
+            background: #000;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            animation: pulse 2s infinite;
-            transition: 0.5s;
+            transition: 2s ease-in-out;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 20px var(--neon-purple); }
-            50% { transform: scale(1.1); box-shadow: 0 0 60px var(--neon-purple); }
-            100% { transform: scale(1); box-shadow: 0 0 20px var(--neon-purple); }
-        }
-
-        #main-stage {
-            display: none;
-            text-align: center;
-            width: 100%;
-        }
-
-        .neon-text {
-            font-size: 3rem;
-            color: #fff;
-            text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple), 0 0 40px var(--neon-purple);
-            margin-bottom: 20px;
-        }
-
-        /* BTS Member Photos */
-        .bts-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .member-card {
+        .crystal-ball {
             width: 120px;
             height: 120px;
-            border-radius: 10px;
-            border: 2px solid var(--neon-purple);
-            box-shadow: 0 0 15px var(--neon-purple);
-            opacity: 0;
-            transform: translateY(50px);
-            transition: 0.8s ease-out;
-            object-fit: cover;
+            background: radial-gradient(circle, #bc13fe, transparent);
+            border-radius: 50%;
+            box-shadow: 0 0 50px #bc13fe, inset 0 0 20px white;
+            cursor: pointer;
+            animation: float 3s ease-in-out infinite;
         }
 
-        .show-member {
-            opacity: 1;
-            transform: translateY(0);
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
         }
 
-        /* Sweetie Popup Overlay */
-        #final-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
+        /* Main Stage */
+        #stage {
+            position: relative;
+            z-index: 10;
             display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
+            text-align: center;
+            opacity: 0;
+            transition: 3s ease;
         }
 
-        .sweetie-text {
-            font-size: 4rem;
-            color: var(--deep-red);
-            text-shadow: 0 0 20px var(--deep-red);
-            font-family: 'Dancing Script', cursive;
+        .bts-hero-img {
+            max-width: 80vw;
+            max-height: 60vh;
+            border-radius: 15px;
+            box-shadow: 0 0 40px rgba(188, 19, 254, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+            transform: scale(0.9);
+            animation: zoomIn 10s infinite alternate;
         }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.95); }
+            to { transform: scale(1.02); }
+        }
+
+        .neon-title {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            color: #fff;
+            text-shadow: 0 0 10px #bc13fe, 0 0 30px #bc13fe;
+            margin: 20px 0;
+        }
+
+        .sweetie-popup {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 20px 60px;
+            border-radius: 50px;
+            border: 1px solid #ff0055;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ff0055;
+            transition: 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            white-space: nowrap;
+        }
+
+        .popup-active { bottom: 50px; box-shadow: 0 0 30px #ff0055; }
     </style>
 </head>
 <body>
 
-    <div id="intro">
-        <h2 style="margin-bottom: 40px;">2003.03.22 — A Dark Star Was Born</h2>
-        <div id="portal" onclick="unlockSurprise()">
-            <span>TAP TO ENTER</span>
-        </div>
+    <canvas id="canvas"></canvas>
+
+    <div id="overlay">
+        <h2 style="letter-spacing: 5px; margin-bottom: 30px;">THE REVELATION OF 2003.03.22</h2>
+        <div class="crystal-ball" onclick="revealMagic()"></div>
+        <p style="margin-top: 20px; color: #666;">Tap the energy to begin</p>
     </div>
 
-    <div id="main-stage">
-        <h1 class="neon-text">HAPPY BIRTHDAY TANVI 😈</h1>
-        <div class="bts-container" id="bts-grid">
-            </div>
+    <div id="stage">
+        <h1 class="neon-title">Happy Birthday Tanvi</h1>
+        <img src="https://i.postimg.cc/8PzXzG0L/BTS-Image.jpg" class="bts-hero-img" alt="BTS Happy Birthday Tanvi">
+        <div id="sweetie" class="sweetie-popup">Happy Birthday Sweetie! 🍭😈</div>
     </div>
 
-    <div id="final-overlay">
-        <div class="sweetie-text">Happy Birthday Sweetie! 🍭🔥</div>
-    </div>
-
-    <audio id="hbd-audio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio> 
-    <audio id="bts-audio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"></audio>
+    <audio id="music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
-        const members = ["RM", "Jin", "Suga", "J-Hope", "Jimin", "V", "Jungkook"];
-        
-        // Note: Replace these with real BTS image URLs
-        const btsImgs = [
-            "https://via.placeholder.com/150/000/bc13fe?text=RM",
-            "https://via.placeholder.com/150/000/bc13fe?text=Jin",
-            "https://via.placeholder.com/150/000/bc13fe?text=Suga",
-            "https://via.placeholder.com/150/000/bc13fe?text=J-Hope",
-            "https://via.placeholder.com/150/000/bc13fe?text=Jimin",
-            "https://via.placeholder.com/150/000/bc13fe?text=V",
-            "https://via.placeholder.com/150/000/bc13fe?text=JK"
-        ];
+        // Particle Background Logic
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
 
-        function unlockSurprise() {
-            document.getElementById('intro').style.display = 'none';
-            document.getElementById('main-stage').style.display = 'block';
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-            const hbd = document.getElementById('hbd-audio');
-            const bts = document.getElementById('bts-audio');
-
-            // 1. Start with HBD song for 4 seconds
-            hbd.play();
-
-            // 2. Switch to Boy With Luv and show members
-            setTimeout(() => {
-                hbd.pause();
-                bts.play();
-                spawnMembers();
-            }, 4000);
-
-            // 3. Final Sweetie Popup
-            setTimeout(() => {
-                document.getElementById('final-overlay').style.display = 'flex';
-            }, 12000);
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.color = Math.random() > 0.5 ? '#bc13fe' : '#ffffff';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
         }
 
-        function spawnMembers() {
-            const grid = document.getElementById('bts-grid');
-            btsImgs.forEach((url, index) => {
-                setTimeout(() => {
-                    const img = document.createElement('img');
-                    img.src = url;
-                    img.className = 'member-card';
-                    grid.appendChild(img);
-                    setTimeout(() => img.classList.add('show-member'), 50);
-                }, index * 600);
-            });
+        function init() {
+            for(let i=0; i<100; i++) particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        init(); animate();
+
+        // Reveal Logic
+        function revealMagic() {
+            // Start Music
+            const music = document.getElementById('music');
+            music.play();
+
+            // Fade out overlay
+            document.getElementById('overlay').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('overlay').style.display = 'none';
+                const stage = document.getElementById('stage');
+                stage.style.display = 'block';
+                setTimeout(() => { stage.style.opacity = '1'; }, 100);
+            }, 2000);
+
+            // Trigger Final Popup
+            setTimeout(() => {
+                document.getElementById('sweetie').classList.add('popup-active');
+            }, 7000);
         }
     </script>
 </body>
